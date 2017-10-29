@@ -1,0 +1,70 @@
+{
+  "intents": [
+    {
+      "name": "AMAZON.CancelIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.HelpIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.StopIntent",
+      "samples": []
+    },
+    {
+      "name": "Departure",
+      "samples": [
+        "wann der Bus kommt",
+        "Wann der Bus ab {station} abfährt",
+        "Wann der Bus von der {station} abfährt",
+        "Wann der Bus an der {station} kommt",
+        "Wann der Bus von {station} abfährt"
+      ],
+      "slots": [
+        {
+          "name": "station",
+          "type": "AMAZON.DE_REGION",
+          "samples": [
+            "Von {station}",
+            "Ab {station}"
+          ]
+        }
+      ]
+    }
+  ],
+  "prompts": [
+    {
+      "id": "Elicit.Intent-Departure.IntentSlot-station",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Von wo willst du abfahren?"
+        }
+      ]
+    }
+  ],
+  "dialog": {
+    "version": "1.0",
+    "intents": [
+      {
+        "name": "Departure",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "station",
+            "type": "AMAZON.DE_REGION",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-Departure.IntentSlot-station"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
